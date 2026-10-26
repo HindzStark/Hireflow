@@ -77,7 +77,7 @@ Title format: `[Area] verb + outcome`.
 
 ### A6. Git ↔ Jira
 - Branch: `feature/HF-29-pipeline-drag`, `fix/HF-70-empty-column-drop`, `chore/HF-6-outbox`
-- Commit: `HF-29: add optimistic stage move on pipeline board`
+- Commit (Conventional Commits + Jira footer): `feat(candidate): add optimistic stage move on pipeline board` with footer `Refs: HF-29`. Full rules: `CONTRIBUTING.md`
 - With the "GitHub for Jira" app, the keys auto-link commits and PRs to tickets.
 
 ### A7. Daily flow

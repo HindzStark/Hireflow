@@ -66,7 +66,7 @@ pnpm dev | pnpm db:migrate | pnpm db:seed | pnpm db:reset | pnpm test | pnpm typ
 2. Skim the plan (≤2 min) → approve
 3. Claude builds → ask it to verify the block's "Done when" (07)
 4. Check it yourself in the browser / kafka-ui (≤2 min)
-5. git commit -m "HF-xx: …"  → drag Jira cards to Done
+5. Commit `type(scope): summary` + `Refs: HF-xx`, merge to develop (CONTRIBUTING.md) → drag Jira cards to Done
 6. Over time by 15 min? → apply the block's ✂️ cut and move on
 ```
 
