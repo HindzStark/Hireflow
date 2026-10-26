@@ -1,0 +1,43 @@
+# dependencies
+node_modules/
+.pnpm-store/
+
+# builds
+dist/
+build/
+.next/
+out/
+.turbo/
+*.tsbuildinfo
+
+# env & secrets
+.env
+.env.*
+!.env.example
+
+# logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# test output
+coverage/
+playwright-report/
+test-results/
+e2e/.auth/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# Claude Code local files
+.claude/settings.local.json
+.claude/skills/*-workspace/
+
+# infra (later)
+*.tfstate
+*.tfstate.*
+.terraform/

@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: scorecard-duplicate-bug
+expected_outcome: |
+  A single Bug ticket HF-53 with steps to reproduce, expected, actual, a suspected cause, acceptance criteria including a regression test, labelled for block 6 of the 5-hour build, plus a parseable CSV and a row appended to the 5-hour table of plans/08 with an updated totals line.
+context:
+  scaffold_script: place-files.sh
