@@ -22,7 +22,7 @@ Tick each item. Claude reads this at session start, and unticked items are block
 ## GitHub repo (https://github.com/HindzStark/Hireflow)
 | ✔ | Item | Why | How |
 |---|---|---|---|
-| [ ] | Push access works | Claude pushes branches/tags | First push opens a browser login (Git Credential Manager). Approve it once. |
+| [x] | Push access works | Claude pushes branches/tags | verified: main, develop and v0.0.1 pushed on 2026-10-26 |
 | [ ] | **Default branch = `develop`** | new PRs target develop automatically | Repo → Settings → General → Default branch → `develop` |
 | [ ] | **Protect `main`** | no direct pushes to released code | Settings → Branches → Add rule `main`: ✅ Require a pull request before merging · ✅ Do not allow bypassing (optional for solo) · ❌ Allow force pushes |
 | [ ] | **Protect `develop`** | same for integration branch | Add rule `develop`: ✅ Require a pull request (0 approvals is fine solo) · ❌ Allow force pushes |
