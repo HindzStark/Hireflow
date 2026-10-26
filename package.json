@@ -1,0 +1,30 @@
+{
+  "name": "hireflow",
+  "version": "0.1.0",
+  "private": true,
+  "description": "HireFlow: internal Applicant Tracking System built as microservices",
+  "packageManager": "pnpm@11.18.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "db:migrate": "turbo run db:migrate --concurrency=1",
+    "db:seed": "turbo run db:seed --concurrency=1",
+    "db:reset": "turbo run db:reset --concurrency=1",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "infra:up": "docker compose up -d",
+    "infra:down": "docker compose down"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "prettier": "^3.9.10",
+    "turbo": "^2.11.10",
+    "typescript": "^5.9.3"
+  }
+}
