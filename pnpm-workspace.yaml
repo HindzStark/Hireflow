@@ -2,3 +2,12 @@ packages:
   - "apps/*"
   - "services/*"
   - "packages/*"
+
+# pnpm 11 blocks dependency install scripts unless approved here.
+allowBuilds:
+  esbuild: true
+  prisma: true
+  "@prisma/engines": true
+  "@prisma/client": true
+  sharp: true
+  unrs-resolver: true
