@@ -61,6 +61,8 @@ chore(deps): pin prisma to v6
 ```
 Commit small, working steps. Each commit should build.
 
+**The `Refs:` footer is not optional.** `scripts/sync-progress.mjs` (run by the Claude Code Stop hook) reads it to tick `docs/PROGRESS.md`. Write one key per ticket or a comma list: `Refs: HF-3, HF-4`. Commits with no ticket (rare tooling work) may omit it.
+
 ## 3. Daily flow for one ticket
 
 ```bash

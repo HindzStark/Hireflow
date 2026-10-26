@@ -18,6 +18,7 @@
     "db:reset": "turbo run db:reset --concurrency=1",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "progress:sync": "node scripts/sync-progress.mjs",
     "infra:up": "docker compose up -d",
     "infra:down": "docker compose down"
   },

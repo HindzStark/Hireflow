@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/scripts/sync-progress.mjs\"",
+            "timeout": 30,
+            "statusMessage": "Syncing docs/PROGRESS.md from git history..."
+          }
+        ]
+      }
+    ]
+  }
+}
