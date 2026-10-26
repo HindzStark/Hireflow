@@ -3,7 +3,7 @@
 HireFlow is an **internal Applicant Tracking System (ATS)**. The hiring team (ADMIN, HR, INTERVIEWER) manages candidates **after** they apply: jobs, review inbox, a Kanban pipeline, interviews, scorecards, and later offers and reports. Candidates never log in. It is built as **microservices** behind an API gateway, connected by **Kafka**, in a **5-hour** build.
 
 ## Start of every session (do this first)
-1. Read `docs/PROGRESS.md`: the current block, what's done, and **what to do next**.
+1. Read `docs/PROGRESS.md`: the current block, what's done, and **what to do next**. Its ✅ Done / ⏳ Remaining block is maintained automatically (see "Progress tracking").
 2. Run `git status` and `git branch --show-current`. Never start work on `main` or `develop` (see Git rules).
 3. Read only the plan docs the next task needs (map below).
 
@@ -85,10 +85,19 @@ pnpm typecheck | test | lint | format
 ## Git rules (summary; full rules in CONTRIBUTING.md)
 - Branches: `main` (released, tagged) ← `develop` (integration) ← `feature/HF-<n>-<slug>`, `fix/…`, `chore/…`, `docs/…`.
 - **Never commit directly to `main` or `develop`.** Branch from `develop`, one ticket per branch.
-- Commits: Conventional Commits, `type(scope): imperative subject`, plus a footer `Refs: HF-<n>`. Scope = service/package name.
+- Commits: Conventional Commits, `type(scope): imperative subject`, plus a footer `Refs: HF-<n>` (**required**: the progress hook ticks from it). Scope = service/package name.
 - Finish a feature: typecheck + tests green → update `docs/PROGRESS.md` → merge into `develop` with `--no-ff` (or a GitHub PR) → delete the branch.
 - Release a block: `develop` → `main` with `--no-ff` + an annotated tag `v0.<block>.0`. Ask the user before pushing.
 - Never force-push `main`/`develop`. Never commit `.env` or secrets.
+
+## Progress tracking (automatic: a Stop hook)
+`.claude/settings.json` runs `scripts/sync-progress.mjs` after every Claude run (also: `pnpm progress:sync`, or `--dry` to preview). It reads `git log develop main` and:
+- **ticks** checklist lines in `docs/PROGRESS.md` whose `HF-n` appears in a `Refs: HF-n` commit footer (a line with several keys ticks when all are merged),
+- **adds** merged tickets the checklist doesn't list under "Other tickets (auto-added from git history)",
+- **rewrites** the ✅ Done / ⏳ Remaining / ▶ Next ticket block (between the `AUTO-SYNC` markers).
+It never unticks, and only writes when something changed.
+
+So: every commit needs a `Refs: HF-n` footer (a commit without one is invisible to the tracker), and ticks appear only once the work is on `develop`. After a merge the hook leaves `docs/PROGRESS.md` modified on `develop`: don't commit it there. Carry it into your next branch and commit it as `docs(progress): sync` with that work. You still write the session log and "Next step" by hand.
 
 ## Definition of done (every ticket)
 Acceptance criteria verified · `pnpm typecheck` + tests pass · `/api/v1/health` green · plan docs updated if contracts changed · `docs/PROGRESS.md` updated · merged with the ticket key.

@@ -1,7 +1,8 @@
 # HireFlow: Progress Tracker & Session Handoff
 
 > **For every new Claude Code session:** read this file first, then `.claude/CLAUDE.md`.
-> **At the end of every feature/session:** update "Current status", tick the checklist, add a log entry, and rewrite "Next step".
+> **Ticking is automatic:** a Stop hook (`scripts/sync-progress.mjs`) runs after every Claude run. It ticks checklist items whose `HF-n` appears in a `Refs:` commit footer on `develop`/`main`, adds merged tickets that aren't listed, and rewrites the ✅/⏳ block below. Don't edit that block by hand.
+> **At the end of every feature/session you still write:** the "Current status" table, a session-log entry, and the "Next step" section.
 
 ## Current status
 | | |
@@ -12,6 +13,13 @@
 | **Blockers** | Start Docker Desktop (see `docs/SETUP-CHECKLIST.md`) |
 | **Last updated** | 2026-10-26 |
 
+<!-- AUTO-SYNC:START (maintained by scripts/sync-progress.mjs via the Stop hook; do not edit by hand) -->
+**Tickets: 3/24 done (13%)**, counted from `Refs: HF-n` footers of commits on `develop` / `main`
+- ✅ **Done:** HF-1, HF-2, HF-7
+- ⏳ **Remaining:** HF-3, HF-4, HF-5, HF-6, HF-8, HF-9, HF-10, HF-11, HF-12, HF-13, HF-14, HF-15, HF-16, HF-17, HF-18, HF-19, HF-20, HF-21, HF-22, HF-23, HF-24
+- ▶ **Next ticket:** HF-3 `packages/contracts`: event envelope, error codes
+<!-- AUTO-SYNC:END -->
+
 ## ▶ Next step (do exactly this)
 1. Finish the open items in `docs/SETUP-CHECKLIST.md` (Docker Desktop running, `.env` present).
 2. Start the infra: `pnpm infra:up` → open http://localhost:8080 (kafka-ui) to confirm Kafka is up.
@@ -21,7 +29,7 @@
 5. Then HF-5 on its own branch: `_template` service + gateway + 4 services with `/health`, so that `GET localhost:4000/api/v1/health` shows all OK. HF-6 next: web shell (shadcn init, sidebar, api client).
 
 ## 5-hour build checklist
-Tick as you merge into `develop`. Ticket details are in `plans/08`, block timings in `plans/07`.
+Ticked automatically when a ticket is merged into `develop` (manual ticks are kept; nothing is ever unticked). Ticket details are in `plans/08`, block timings in `plans/07`.
 
 ### Scaffold (done before the clock starts)
 - [x] Git repo, `main` + `develop` branches, remote on GitHub
@@ -72,6 +80,7 @@ Later phases (offers, reports, k8s…) are tracked in `plans/99-post-mvp-roadmap
 ## Session log (newest first)
 | Date | Branch | What was done | Tag/commit | Notes for next session |
 |---|---|---|---|---|
+| 2026-10-26 | `chore/progress-sync-hook` → `develop` | Added the Stop hook + `scripts/sync-progress.mjs`: auto-ticks this checklist from `Refs: HF-n` commit footers, adds unlisted merged tickets, maintains the ✅/⏳ block | (see git log) | The hook only loads after you open `/hooks` once or restart Claude Code. Every commit needs a `Refs: HF-n` footer or it won't tick. |
 | 2026-10-26 | `chore/HF-1-project-scaffold` → `develop` → `main` | Repo init, monorepo config, docker compose, package skeletons, deps installed, CLAUDE.md, git workflow docs | `v0.0.1` | Docker Desktop was not running, so images are not pulled yet. Pinned TS 5, Prisma 6 (pnpm resolved TS 7 and a Prisma 8 RC by default). |
 
 ## Handoff template (copy into the log at the end of a session)
